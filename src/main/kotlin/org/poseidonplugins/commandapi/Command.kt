@@ -17,6 +17,7 @@ abstract class Command(
 
     val name: String = name.lowercase()
     val aliases: List<String> = aliases.map { it.lowercase() }
+    private var parent: Command? = null
     private val childCommands: MutableMap<String, Command> = mutableMapOf()
 
     abstract fun execute(event: CommandEvent)
@@ -26,8 +27,11 @@ abstract class Command(
         return true
     }
 
+    fun getParent(): Command? = parent
+
     fun addChild(name: String, child: Command) {
         childCommands[name.lowercase()] = child
+        child.parent = this
     }
 
     fun getChildren(): Map<String, Command> = childCommands.toMap()
