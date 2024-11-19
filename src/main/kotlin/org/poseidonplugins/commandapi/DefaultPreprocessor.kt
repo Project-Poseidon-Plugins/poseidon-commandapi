@@ -1,5 +1,6 @@
 package org.poseidonplugins.commandapi
 
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 class DefaultPreprocessor : Preprocessor() {
@@ -15,7 +16,8 @@ class DefaultPreprocessor : Preprocessor() {
             sendMessage(event.sender, "&cYou have provided too many arguments.")
             sendMessage(event.sender, "&cUsage: ${event.command.usage}")
         } else {
-            event.command.execute(event)
+            Bukkit.getPluginManager().callEvent(event)
+            if (!event.isCancelled) event.command.execute(event)
         }
     }
 }
