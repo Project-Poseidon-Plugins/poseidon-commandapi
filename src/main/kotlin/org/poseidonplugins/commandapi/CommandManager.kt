@@ -19,10 +19,7 @@ class CommandManager(private val plugin: Plugin) {
 
     init {
         try {
-            val field = Bukkit.getPluginManager().javaClass.getDeclaredField("commandMap")
-            field.isAccessible = true
-            commandMap = field.get(Bukkit.getPluginManager()) as SimpleCommandMap
-            field.isAccessible = false
+            commandMap = getField(Bukkit.getPluginManager(), "commandMap") as SimpleCommandMap
             logger.info("$prefix Initialized command map")
         } catch (e: Exception) {
             logger.severe("$prefix Error while initializing command map")
