@@ -7,5 +7,6 @@ class CommandEvent(
     val sender: CommandSender,
     val command: Command,
     val label: String,
-    val args: List<String>
+    val args: List<String>,
+    val fullCommand: String
 ) : Event("CommandEvent")

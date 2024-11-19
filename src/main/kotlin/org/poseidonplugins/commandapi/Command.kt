@@ -23,7 +23,7 @@ abstract class Command(
     abstract fun execute(event: CommandEvent)
 
     final override fun onCommand(sender: CommandSender, command: org.bukkit.command.Command, label: String, args: Array<out String>): Boolean {
-        preprocessor.invoke(CommandEvent(sender, this, label, args.toList()))
+        preprocessor.invoke(CommandEvent(sender, this, label, args.toList(), "/$label ${args.joinToString(" ")}"))
         return true
     }
 

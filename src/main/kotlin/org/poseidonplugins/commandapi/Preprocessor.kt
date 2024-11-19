@@ -5,7 +5,7 @@ abstract class Preprocessor {
         val child: Command? = if (event.args.isNotEmpty()) event.command.getChild(event.args[0]) else null
         if (child != null) {
             val cmdEvent = CommandEvent(event.sender, child, event.label,
-                if (event.args.size == 1) listOf() else event.args.subList(1, event.args.size))
+                if (event.args.size == 1) listOf() else event.args.subList(1, event.args.size), event.fullCommand)
             child.preprocessor.invoke(cmdEvent)
         } else {
             preprocess(event)
