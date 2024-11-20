@@ -4,6 +4,7 @@ package org.poseidonplugins.commandapi
 
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
+import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.command.SimpleCommandMap
@@ -23,8 +24,10 @@ fun getField(obj: Any, name: String): Any {
     return objField
 }
 
+fun getCommandMap(): CommandMap = getField(Bukkit.getPluginManager(), "commandMap") as SimpleCommandMap
+
 fun getPluginCommands(): Map<String, Command> {
-    var commands = getField(getField(Bukkit.getPluginManager(), "commandMap") as SimpleCommandMap, "knownCommands") as Map<String, Command>
+    var commands = getField(getCommandMap(), "knownCommands") as Map<String, Command>
 
     return commands
         .filter { (name, command) -> command is PluginCommand && name == command.name }
