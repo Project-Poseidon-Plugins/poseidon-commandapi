@@ -14,6 +14,8 @@ fun hasPermission(sender: CommandSender, permission: String): Boolean =
 
 fun sendMessage(sender: CommandSender, message: String) = sender.sendMessage(colorize(message))
 
+fun sendMessage(sender: CommandSender, obj: Any) = sendMessage(sender, obj.toString())
+
 fun colorize(message: String) = message.replace("&([0-9a-f])".toRegex(), "§$1")
 
 fun getField(obj: Any, name: String): Any {
