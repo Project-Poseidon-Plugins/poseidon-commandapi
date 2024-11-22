@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.command.SimpleCommandMap
 
-fun hasPermission(sender: CommandSender, permission: String): Boolean =
-    sender.isOp || sender.hasPermission(permission) || permission == ""
+fun hasPermission(sender: CommandSender, permission: String?): Boolean =
+    permission.isNullOrEmpty() || sender.isOp || sender.hasPermission(permission)
 
 fun sendMessage(sender: CommandSender, message: String) = sender.sendMessage(colorize(message))
 
