@@ -16,7 +16,20 @@ fun sendMessage(sender: CommandSender, message: String) = sender.sendMessage(col
 
 fun sendMessage(sender: CommandSender, obj: Any) = sendMessage(sender, obj.toString())
 
+fun broadcastMessage(message: String) = Bukkit.broadcastMessage(colorize(message))
+
+fun broadcastMessage(obj: Any) = broadcastMessage(obj.toString())
+
 fun colorize(message: String) = message.replace("&([0-9a-f])".toRegex(), "§$1")
+
+fun joinArgs(list: List<Any>, fromIndex: Int, toIndex: Int, delimiter: String) =
+    list.subList(fromIndex, toIndex).joinToString(delimiter)
+
+fun joinArgs(list: List<Any>, fromIndex: Int, toIndex: Int) = joinArgs(list, fromIndex, toIndex, " ")
+
+fun joinArgs(list: List<Any>, fromIndex: Int, delimiter: String) = joinArgs(list, fromIndex, list.size, delimiter)
+
+fun joinArgs(list: List<Any>, fromIndex: Int) = joinArgs(list, fromIndex, list.size)
 
 fun getField(obj: Any, name: String): Any {
     val field = obj.javaClass.getDeclaredField(name)
