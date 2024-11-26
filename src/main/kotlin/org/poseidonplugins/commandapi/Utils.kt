@@ -8,6 +8,7 @@ import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.command.SimpleCommandMap
+import java.util.SortedMap
 
 fun hasPermission(sender: CommandSender, permission: String?): Boolean =
     permission.isNullOrEmpty() || sender.isOp || sender.hasPermission(permission)
@@ -41,10 +42,11 @@ fun getField(obj: Any, name: String): Any {
 
 fun getCommandMap(): CommandMap = getField(Bukkit.getPluginManager(), "commandMap") as SimpleCommandMap
 
-fun getPluginCommands(): Map<String, Command> {
-    var commands = getField(getCommandMap(), "knownCommands") as Map<String, Command>
+fun getPluginCommands(): Map<String, PluginCommand> {
+    val commands = getField(getCommandMap(), "knownCommands") as Map<String, Command>
 
     return commands
         .filter { (name, command) -> command is PluginCommand && name == command.name }
         .toSortedMap(compareBy<String> { (commands[it] as PluginCommand).plugin.description.name }.thenBy { it })
+        as SortedMap<String, PluginCommand>
 }
