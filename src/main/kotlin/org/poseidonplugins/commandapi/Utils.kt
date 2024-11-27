@@ -21,6 +21,14 @@ fun broadcastMessage(message: String) = Bukkit.broadcastMessage(colorize(message
 
 fun broadcastMessage(obj: Any) = broadcastMessage(obj.toString())
 
+fun broadcastMessage(message: String, permission: String) {
+    for (player in Bukkit.getOnlinePlayers()) {
+        if (hasPermission(player, permission)) sendMessage(player, message)
+    }
+}
+
+fun broadcastMessage(obj: Any, permission: String) = broadcastMessage(obj.toString(), permission)
+
 fun colorize(message: String) = message.replace("&([0-9a-f])".toRegex(), "§$1")
 
 fun joinArgs(list: List<Any>, fromIndex: Int, toIndex: Int, delimiter: String) =
