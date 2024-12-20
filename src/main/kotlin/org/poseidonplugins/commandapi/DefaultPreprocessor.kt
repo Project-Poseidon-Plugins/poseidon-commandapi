@@ -3,7 +3,17 @@ package org.poseidonplugins.commandapi
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
+/**
+ * The default preprocessor used to process commands.
+ * Custom implementations must inherit from [Preprocessor].
+ */
 class DefaultPreprocessor : Preprocessor() {
+
+    /**
+     * Processes the command and executes it when all conditions are met.
+     *
+     * @param event The [CommandEvent] associated with the execution
+     */
     override fun preprocess(event: CommandEvent) {
         if (!hasPermission(event.sender, event.command.permission)) {
             sendMessage(event.sender, "&cYou don't have permission to do that.")

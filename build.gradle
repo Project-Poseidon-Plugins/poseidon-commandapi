@@ -2,10 +2,11 @@ plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.22'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'maven-publish'
 }
 
 group = 'org.poseidonplugins.commandapi'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -23,11 +24,27 @@ compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
 }
 
+jar {
+    archiveClassifier.set('original')
+}
+
 shadowJar {
     dependencies {
         exclude(dependency('com.legacyminecraft.poseidon:poseidon-craftbukkit:1.1.8'))
     }
-    archiveBaseName.set('poseidon-commandapi')
-    archiveVersion.set('1.0-SNAPSHOT')
     archiveClassifier.set('')
+}
+
+kotlinSourcesJar {
+    archiveClassifier.set('sources')
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.kotlin
+            artifact shadowJar
+            artifact kotlinSourcesJar
+        }
+    }
 }

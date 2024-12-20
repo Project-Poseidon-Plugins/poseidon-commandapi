@@ -4,6 +4,15 @@ import org.bukkit.command.CommandSender
 import org.bukkit.event.Cancellable
 import org.bukkit.event.Event
 
+/**
+ * Stores relevant information about the execution of a command.
+ *
+ * @param sender The [CommandSender] that executed the command
+ * @param command The command that was executed
+ * @param label The command label that was used
+ * @param args The arguments that were provided
+ * @param fullCommand The full command string that was typed
+ */
 class CommandEvent(
     val sender: CommandSender,
     val command: Command,

@@ -8,6 +8,11 @@ import org.bukkit.plugin.Plugin
 import java.lang.reflect.Constructor
 import java.util.logging.Logger
 
+/**
+ * Used for registering a plugin's commands on the server.
+ *
+ * @param plugin The plugin whose commands should be registered
+ */
 class CommandManager(private val plugin: Plugin) {
 
     private val logger: Logger = Bukkit.getLogger()
@@ -27,6 +32,11 @@ class CommandManager(private val plugin: Plugin) {
         }
     }
 
+    /**
+     * Registers commands from this plugin on the server.
+     *
+     * @param commands The commands that should be registered
+     */
     fun registerCommands(vararg commands: Command) {
         for (command in commands) {
             if (command.name.contains(".")) {
