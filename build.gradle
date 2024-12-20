@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.poseidonplugins.commandapi'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
     mavenCentral()
@@ -24,15 +24,11 @@ compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
 }
 
-jar {
-    archiveClassifier.set('original')
-}
-
 shadowJar {
     dependencies {
         exclude(dependency('com.legacyminecraft.poseidon:poseidon-craftbukkit:1.1.8'))
     }
-    archiveClassifier.set('')
+    archiveClassifier.set('all')
 }
 
 kotlinSourcesJar {
