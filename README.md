@@ -17,7 +17,7 @@ A lightweight Command API for [Project-Poseidon](https://github.com/RhysB/Projec
     <dependency>
         <groupId>com.github.Project-Poseidon-Plugins</groupId>
         <artifactId>poseidon-commandapi</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
@@ -29,6 +29,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Project-Poseidon-Plugins:poseidon-commandapi:1.0.0'
+    implementation 'com.github.Project-Poseidon-Plugins:poseidon-commandapi:1.0.1'
 }
 ```
